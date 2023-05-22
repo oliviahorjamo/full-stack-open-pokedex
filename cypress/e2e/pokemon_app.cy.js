@@ -4,4 +4,11 @@ describe('Pokedex', function() {
     cy.contains('ivysaur')
     cy.contains('Pokémon and Pokémon character names are trademarks of Nintendo')
   })
+
+  it('clicking a pokemon opens pokemon page', function() {
+    cy.visit('http://localhost:5000')
+    //cy.get('#link-item-name').click()
+    cy.contains('ivysaur').click()
+    cy.contains('chlorophyll')
+  })
 })
