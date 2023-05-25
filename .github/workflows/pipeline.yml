@@ -5,7 +5,7 @@ on:
     branches:
       - master
     pull_request:
-      braches: [master]
+      branches: [master]
       types: [opened, synchronize]
       
 jobs:
@@ -32,7 +32,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - name: deploy to fly
-        if: ${{ github.event_name == "push" }}
+        if: ${{ github.event_name == 'push' }}
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
