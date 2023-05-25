@@ -47,7 +47,7 @@ processes = []
     timeout = "2s"
 
   [[services.http_checks]]
-    grace_period = "5s
+    grace_period = "5s"
     method = "get"
     path="/health"
     protocol="http"
@@ -56,7 +56,7 @@ processes = []
 
   
   [[services.http_checks]]
-    grace_period = "5s
+    grace_period = "5s"
     method = "get"
     path="/version"
     protocol="http"
