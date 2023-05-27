@@ -68,3 +68,4 @@ jobs:
           DEFAULT_BUMP: patch
 
 # test comment to make a new push after modifying secret
+# and another one
