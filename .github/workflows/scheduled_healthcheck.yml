@@ -1,0 +1,21 @@
+name: Testing stuff
+
+on: # later put here scheduled time
+  push:
+    branches:
+      - master
+
+jobs:
+  scheduled healthcheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: check the deployed service url
+        url: https://olivias-pokedex-app.fly.dev/
+        
+
+
+# toJSON(github.event.commits.*.message) palauttaa listan
+# kaikista commit messageista
+# joinaa nää yhteen
+# jos contains #skips niin skippaa tag
