@@ -20,5 +20,14 @@ jobs:
         run: echo "$COMMITS"
       - name: commit messages
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+          COMMIT_MESSAGES: ${{ join(toJson(github.event.commits.*.message)) }}
         run: echo "$COMMIT_MESSAGES"
+        if: {{ contains($COMMIT_MESSAGES, '#skip') }}
+        run: echo "contained skip"
+
+
+
+# toJSON(github.event.commits.*.message) palauttaa listan
+# kaikista commit messageista
+# joinaa nää yhteen
+# jos contains #skips niin skippaa tag
