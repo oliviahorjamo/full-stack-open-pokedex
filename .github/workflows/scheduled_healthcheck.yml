@@ -1,4 +1,4 @@
-name: Testing stuff
+name: Periodic healthcheck to url
 
 on: # later put here scheduled time
   push:
@@ -6,7 +6,7 @@ on: # later put here scheduled time
       - master
 
 jobs:
-  scheduled healthcheck:
+  scheduled_healthcheck:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
