@@ -1,7 +1,8 @@
 name: Periodic healthcheck to url
 
 on: # later put here scheduled time
-  push:
+  schedule:
+    - cron: '30 2 * * 6'
     branches:
       - master
 
