@@ -3,9 +3,7 @@ name: Periodic healthcheck to url
 on: # later put here scheduled time
   schedule:
     - cron: '30 2 * * 6'
-  branches:
-    - master
-
+ 
 jobs:
   scheduled_healthcheck:
     runs-on: ubuntu-20.04
