@@ -17,6 +17,20 @@ jobs:
         with:
           node-version: '16'
       - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Successful deployment
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          details: Test succeeded!
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          details: Test failed ${{ toJson(github.event.commits[0].sha)}} failed
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK}}
       - name: Install dependencies
         run: npm install
       - name: Check style
@@ -32,7 +46,9 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - name: deploy to fly
-        if: ${{ github.event_name == 'push' }}
+        if: | 
+        github.event_name == 'push' && 
+        !contains(join(toJson(github.event.commits.*.message)), '#skip')
         run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
