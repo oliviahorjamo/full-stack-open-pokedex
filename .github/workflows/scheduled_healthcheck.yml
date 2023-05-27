@@ -11,8 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: check the deployed service url
-        url: https://olivias-pokedex-app.fly.dev/
-        
+        uses: jtalk/url-health-check-action@v3
+        with:
+          url: https://olivias-pokedex-app.fly.dev/
+
 
 
 # toJSON(github.event.commits.*.message) palauttaa listan
